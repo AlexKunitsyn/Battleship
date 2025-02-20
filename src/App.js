@@ -11,7 +11,7 @@ import Box from "@mui/material/Box";
 const App = () => (
     <Provider store={store}>
       <Router>
-        <Navigation test={'test!!!!!'} />
+        {/*<Navigation test={'test!!!!!'} />*/}
         <Box>
         <AppRoutes />
         </Box>
