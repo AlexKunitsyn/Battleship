@@ -40,8 +40,6 @@ const Battleship = () => {
     const [board, setBoard] = useState(generateEmptyBoard());
     const [turn, setTurn] = useState("player");
 
-    console.log(board,'board//////')
-
     const handleCellClick = (row, col) => {
         if (board[row][col] === EMPTY) {
             const newBoard = board.map((r, i) => r.map((cell, j) => (i === row && j === col ? MISS : cell)));
