@@ -49,7 +49,7 @@ const Battleship = () => {
     const [turn, setTurn] = useState("player");
     const [ships, setShips] = useState([]);
     const [selectedShip, setSelectedShip] = useState({ length: 1, isVertical: true });
-    const [shipsLeft, setShipsLeft] = useState(false);
+    const [shipsLeft, setShipsLeft] = useState(SHIP_COUNTS);
     const [error, setError] = useState(false);
 
     const handleCellClick = (row, col) => {
@@ -105,18 +105,30 @@ const Battleship = () => {
         setError("");
         const newBoard = [...board];
         const newShips = [...ships];
+        console.log(length,'------length')
+        console.log(row,'------row')
+        console.log(col,'------col')
 
         for (let i = 0; i < length; i++) {
             let r = isVertical ? row + i : row;
             let c = isVertical ? col : col + i;
             newBoard[r][c] = SHIP;
         }
+        console.log(SHIP,'!!!!!SHIP')
+        console.log(newBoard,'!!!!!newBoard')
 
         newShips.push({ row, col, length, isVertical });
         setBoard(newBoard);
         setShips(newShips);
+
+        // console.log(length,'----length');
+        // console.log(shipsLeft[length],'----shipsLeft[length]');
         setShipsLeft((prev) => ({ ...prev, [length]: prev[length] - 1 }));
+
+        // console.log(ships,'-----ships');
+        // console.log(selectedShip,'=========selectedShip');
     };
+    console.log(shipsLeft,'=========shipsLeft');
 
     // Выбор типа корабля
     const selectShip = (length, isVertical) => {
@@ -151,6 +163,7 @@ const Battleship = () => {
                 {selectedShip.isVertical ? "Вертикально" : "Горизонтально"}
             </button>
             <Board>
+                {console.log(board,'------board')}
                 {board.map((row, rowIndex) => (
                     <Row key={rowIndex}>
                         {row.map((cell, colIndex) => (
